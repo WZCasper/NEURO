@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeuroStream — NEURO</title>
+<meta name="description" content="Помощник стримера в одном окне. Бесплатная программа NEURO от Casper.">
+<meta name="theme-color" content="#0a0b14">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<meta property="og:title" content="NeuroStream — NEURO">
+<meta property="og:description" content="Помощник стримера в одном окне">
+<meta property="og:type" content="website">
+</head>
+<body data-accent="teal">
+
+<div id="cursor-glow"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="navgA" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+        </linearGradient></defs>
+        <g stroke="url(#navgA)" stroke-width="2.6" stroke-linecap="round" fill="none">
+          <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+        </g>
+        <g fill="url(#navgA)">
+          <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+          <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+          <circle cx="32" cy="32" r="4.6"/>
+        </g>
+      </svg>
+      <span>NEURO</span>
+    </a>
+    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html#apps">Программы</a>
+      <a href="../index.html#donate">Поддержать</a>
+      <a class="nav-cta" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</nav>
+
+<header class="app-hero" data-accent="teal">
+  <div class="wrap">
+    <div class="app-hero-top">
+      <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 7"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 7"/><path d="M4.5 5.5a11 11 0 0 0 0 13"/><path d="M19.5 5.5a11 11 0 0 1 0 13"/></svg></div>
+      <div>
+        <h1>NeuroStream</h1>
+        <p class="tagline">Помощник стримера в одном окне</p>
+      </div>
+    </div>
+    <span class="pill is-soon"><span class="dot"></span>В разработке</span>
+    <p class="lede">NeuroStream должен собрать в одном компактном окне то, что обычно разбросано по десятку вкладок: сцены, чат и статус трансляции — чтобы во время эфира не приходилось переключаться между программами.</p>
+    <p class="lede" style="margin-top:14px;font-size:14.5px;color:var(--ink-dim)">Программа сейчас в разработке. Репозиторий и первый релиз появятся здесь же — подпишитесь на Telegram, чтобы не пропустить анонс.</p>
+    <div class="app-hero-actions">
+      <div class="dl-wrap">
+            <span class="btn btn-soon" aria-disabled="true">Скоро</span>
+            <div class="dl-meta">Репозиторий пока не опубликован — следите за анонсом в Telegram</div>
+          </div>
+      <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+        Вопросы и FAQ
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="detail-grid">
+    <div>
+      <h2 class="title" style="font-size:24px">Что планируется</h2>
+      <ul class="feature-list">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Быстрое переключение сцен</h4><p>Управление сценами OBS без переключения окон.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Чат под рукой</h4><p>Сообщения зрителей — прямо поверх остальных программ.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Статус трансляции</h4><p>Длительность эфира, зрители и основные показатели в одном месте.</p></div>
+      </li>
+      </ul>
+    </div>
+    <aside>
+      <div class="side-card">
+        <h4>Требования</h4>
+        <dl>
+        <div class="row"><dt>ОС</dt><dd>Windows 10 / 11 (64-bit)</dd></div>
+        <div class="row"><dt>Статус</dt><dd>В разработке</dd></div>
+        <div class="row"><dt>Цена</dt><dd>Будет бесплатно</dd></div>
+        </dl>
+      </div>
+      <div class="side-card">
+        <h4>Программа</h4>
+        <dl>
+          <div class="row"><dt>Разработчик</dt><dd>Casper</dd></div>
+          
+
+        </dl>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="donate">
+      <div>
+        <h2>NeuroStream — бесплатно, как и все программы NEURO</h2>
+        <p>Если программа пригодилась, можно поддержать разработку добровольным донатом. На доступ к программам это не влияет.</p>
+      </div>
+      <a class="btn btn-primary" href="https://dalink.to/wz_casper" target="_blank" rel="noopener" style="padding:16px 30px; font-size:15px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21 C7 17 3 13.5 3 9.3 C3 6.4 5.3 4 8.2 4 C9.8 4 11.3 4.8 12.2 6.1 C13.1 4.8 14.6 4 16.2 4 C19.1 4 21.4 6.4 21.4 9.3 C21.4 13.5 17 17 12 21 Z"/></svg>
+        Поддержать проект
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="navgB" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+            </linearGradient></defs>
+            <g stroke="url(#navgB)" stroke-width="2.6" stroke-linecap="round" fill="none">
+              <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+            </g>
+            <g fill="url(#navgB)">
+              <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+              <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+              <circle cx="32" cy="32" r="4.6"/>
+            </g>
+          </svg>
+          <span>NEURO</span>
+        </a>
+        <p>Бесплатные программы для стриминга и записи от Casper 亗 Денис — белорусского стримера и guide-блогера.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Программы</h5>
+          <a href="neuromicrophone.html">NeuroMicrophone</a>
+          <a href="neurostream.html">NeuroStream</a>
+          <a href="neurocamera.html">NeuroCamera</a>
+          <a href="neurospec.html">NeuroSpec</a>
+          <a href="neuroverlay.html">NeuroOverlay</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="../index.html#donate">Поддержать разработку</a>
+          <a href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Вопросы в Telegram</a>
+          <a href="https://github.com/WZCasper/NEURO" target="_blank" rel="noopener">Код сайта на GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> NEURO · Casper 亗 Денис</span>
+      <span>Все программы бесплатны и безопасны</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/downloads.js"></script>
+</body>
+</html>

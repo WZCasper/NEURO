@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEURO — бесплатные программы для стриминга от Casper</title>
+<meta name="description" content="NEURO — пять бесплатных программ для стриминга и записи: подавление шума в микрофоне, инструменты для веб-камеры, оверлеи и системная информация о ПК. Автор — Casper, белорусский стример.">
+<meta name="theme-color" content="#0a0b14">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<meta property="og:title" content="NEURO — бесплатные программы для стриминга">
+<meta property="og:description" content="Пять бесплатных программ от Casper: микрофон, камера, оверлеи, системная информация и стрим-помощник.">
+<meta property="og:type" content="website">
+</head>
+<body>
+
+<div id="cursor-glow"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="navg1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+        </linearGradient></defs>
+        <g stroke="url(#navg1)" stroke-width="2.6" stroke-linecap="round" fill="none">
+          <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+        </g>
+        <g fill="url(#navg1)">
+          <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+          <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+          <circle cx="32" cy="32" r="4.6"/>
+        </g>
+      </svg>
+      <span>NEURO</span>
+    </a>
+    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#apps">Программы</a>
+      <a href="#donate">Поддержать</a>
+      <a class="nav-cta" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="neuro-canvas"></canvas>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-kicker">Экосистема программ NEURO</span>
+        <h1 class="holo-text">Бесплатные программы для стрима, которые работают из коробки</h1>
+        <p class="lede">Пять инструментов для тех, кто стримит и снимает контент: чистый звук, чистая картинка, оверлеи на экране и системная информация о ПК. Каждая программа работает сама по себе — скачали и пользуетесь.</p>
+        <div class="hero-actions">
+          <a href="#apps" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 L19 11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 L5 6 Z"/><path d="M8.5 12 L11 14.5 L16 9"/></svg>
+            Смотреть программы
+          </a>
+          <a href="#donate" class="btn btn-ghost">Поддержать проект</a>
+        </div>
+        <div class="safe-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 L19 11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 L5 6 Z"/><path d="M8.5 12 L11 14.5 L16 9"/></svg>
+          <span>Все 5 программ — <strong>бесплатно</strong>, без скрытых платежей и слежки</span>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+      Без вирусов и скрытого сбора данных
+    </div>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+      Без подписок и встроенной рекламы
+    </div>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+      Обновления публикуются прямо на GitHub
+    </div>
+  </div>
+</div>
+
+<section class="section" id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Программы NEURO</span>
+      <h2 class="title">Пять инструментов для одной задачи — стримить проще</h2>
+      <p class="lede">Скачивайте только то, что нужно. Список программ будет расти — новые инструменты появятся здесь же.</p>
+    </div>
+
+    <div class="apps-grid">
+
+      <article class="app-card" data-accent="violet">
+        <span class="pill is-live"><span class="dot"></span>Доступно</span>
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/>
+          </svg>
+        </div>
+        <h3>NeuroMicrophone</h3>
+        <p class="desc">Убирает шум и эхо из микрофона в реальном времени — для стримов, записи роликов и звонков.</p>
+        <div class="card-actions">
+          <div class="dl-wrap">
+            <a class="btn btn-primary btn-loading js-download" data-repo="WZCasper/NeuroMicrofon" data-app="NeuroMicrophone" href="#" aria-busy="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+              <span class="js-download-label">Проверяем релиз…</span>
+            </a>
+          </div>
+          <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+            FAQ
+          </a>
+        </div>
+        <a class="more-link" href="apps/neuromicrophone.html">Подробнее о NeuroMicrophone</a>
+      </article>
+
+      <article class="app-card" data-accent="teal">
+        <span class="pill is-soon"><span class="dot"></span>В разработке</span>
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2.4"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 7"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 7"/><path d="M4.5 5.5a11 11 0 0 0 0 13"/><path d="M19.5 5.5a11 11 0 0 1 0 13"/>
+          </svg>
+        </div>
+        <h3>NeuroStream</h3>
+        <p class="desc">Помощник стримера: сцены, чат и статус трансляции под рукой в одном окне.</p>
+        <div class="card-actions">
+          <div class="dl-wrap">
+            <span class="btn btn-soon" aria-disabled="true">Скоро</span>
+          </div>
+          <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+            FAQ
+          </a>
+        </div>
+        <a class="more-link" href="apps/neurostream.html">Подробнее о NeuroStream</a>
+      </article>
+
+      <article class="app-card" data-accent="cyan">
+        <span class="pill is-live"><span class="dot"></span>Доступно</span>
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7" width="13" height="11" rx="2.5"/><path d="M16 10.5 21 8v8l-5-2.5"/><circle cx="9.5" cy="12.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3>NeuroCamera</h3>
+        <p class="desc">Улучшает картинку с веб-камеры и выводит её отдельной виртуальной камерой для OBS, Zoom и Discord.</p>
+        <div class="card-actions">
+          <div class="dl-wrap">
+            <a class="btn btn-primary btn-loading js-download" data-repo="WZCasper/NeuroCamera" data-app="NeuroCamera" href="#" aria-busy="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+              <span class="js-download-label">Проверяем релиз…</span>
+            </a>
+          </div>
+          <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+            FAQ
+          </a>
+        </div>
+        <a class="more-link" href="apps/neurocamera.html">Подробнее о NeuroCamera</a>
+      </article>
+
+      <article class="app-card" data-accent="amber">
+        <span class="pill is-live"><span class="dot"></span>Доступно</span>
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/>
+            <line x1="6" y1="2" x2="6" y2="5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="18" y1="2" x2="18" y2="5"/>
+            <line x1="6" y1="19" x2="6" y2="22"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="18" y1="19" x2="18" y2="22"/>
+            <line x1="2" y1="6" x2="5" y2="6"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="2" y1="18" x2="5" y2="18"/>
+            <line x1="19" y1="6" x2="22" y2="6"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="19" y1="18" x2="22" y2="18"/>
+          </svg>
+        </div>
+        <h3>NeuroSpec</h3>
+        <p class="desc">Показывает характеристики ПК — процессор, видеокарта, ОЗУ, диски — и копирует их в буфер одним кликом.</p>
+        <div class="card-actions">
+          <div class="dl-wrap">
+            <a class="btn btn-primary btn-loading js-download" data-repo="WZCasper/NeuroSpec" data-app="NeuroSpec" href="#" aria-busy="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+              <span class="js-download-label">Проверяем релиз…</span>
+            </a>
+          </div>
+          <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+            FAQ
+          </a>
+        </div>
+        <a class="more-link" href="apps/neurospec.html">Подробнее о NeuroSpec</a>
+      </article>
+
+      <article class="app-card" data-accent="magenta">
+        <span class="pill is-soon"><span class="dot"></span>В разработке</span>
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 L3 7 L12 12 L21 7 Z"/><path d="M3 12 L12 17 L21 12"/><path d="M3 17 L12 22 L21 17"/>
+          </svg>
+        </div>
+        <h3>NeuroOverlay</h3>
+        <p class="desc">Оверлеи для трансляции: алерты, рамки и виджеты поверх игры — без плагинов для OBS.</p>
+        <div class="card-actions">
+          <div class="dl-wrap">
+            <a class="btn btn-primary btn-loading js-download" data-repo="WZCasper/NeuroOverlay" data-app="NeuroOverlay" href="#" aria-busy="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+              <span class="js-download-label">Проверяем релиз…</span>
+            </a>
+          </div>
+          <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+            FAQ
+          </a>
+        </div>
+        <a class="more-link" href="apps/neuroverlay.html">Подробнее о NeuroOverlay</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="donate" style="padding-top:0">
+  <div class="wrap">
+    <div class="donate">
+      <div>
+        <h2>Все программы бесплатны — если хотите, поддержите разработку</h2>
+        <p>NEURO не продаёт подписки и не встраивает рекламу в свои программы. Если какая-то из них сэкономила вам время, можно угостить разработчика — это добровольно и никак не влияет на доступ к программам.</p>
+      </div>
+      <a class="btn btn-primary" href="https://dalink.to/wz_casper" target="_blank" rel="noopener" style="padding:16px 30px; font-size:15px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21 C7 17 3 13.5 3 9.3 C3 6.4 5.3 4 8.2 4 C9.8 4 11.3 4.8 12.2 6.1 C13.1 4.8 14.6 4 16.2 4 C19.1 4 21.4 6.4 21.4 9.3 C21.4 13.5 17 17 12 21 Z"/></svg>
+        Поддержать проект
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="navg2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+            </linearGradient></defs>
+            <g stroke="url(#navg2)" stroke-width="2.6" stroke-linecap="round" fill="none">
+              <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+            </g>
+            <g fill="url(#navg2)">
+              <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+              <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+              <circle cx="32" cy="32" r="4.6"/>
+            </g>
+          </svg>
+          <span>NEURO</span>
+        </a>
+        <p>Бесплатные программы для стриминга и записи от Casper 亗 Денис — белорусского стримера и guide-блогера.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Программы</h5>
+          <a href="apps/neuromicrophone.html">NeuroMicrophone</a>
+          <a href="apps/neurostream.html">NeuroStream</a>
+          <a href="apps/neurocamera.html">NeuroCamera</a>
+          <a href="apps/neurospec.html">NeuroSpec</a>
+          <a href="apps/neuroverlay.html">NeuroOverlay</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="#donate">Поддержать разработку</a>
+          <a href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Вопросы в Telegram</a>
+          <a href="https://github.com/WZCasper/NEURO" target="_blank" rel="noopener">Код сайта на GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> NEURO · Casper 亗 Денис</span>
+      <span>Все программы бесплатны и безопасны</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/downloads.js"></script>
+</body>
+</html>

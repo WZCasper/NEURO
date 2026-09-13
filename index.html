@@ -409,7 +409,6 @@
     will-change: transform;
   }
 
-  /* Исправление бага с позиционированием плашек: исключаем .pill из относительного позиционирования */
   .app-card > *:not(.app-card-bg):not(.pill) {
     position: relative;
     z-index: 1;
@@ -479,7 +478,7 @@
     display: inline-flex; align-items: center; gap: 6px;
     padding: 4px 12px; border-radius: 100px;
     font-size: 12px; font-weight: 600; text-transform: uppercase;
-    z-index: 2; /* Возвращаем поверх контента */
+    z-index: 2;
   }
   .is-live { background: rgba(51, 230, 216, 0.1); color: var(--accent-teal); border: 1px solid rgba(51, 230, 216, 0.2); }
   .is-live .dot { width: 6px; height: 6px; background: var(--accent-teal); border-radius: 50%; box-shadow: 0 0 8px var(--accent-teal); animation: pulse 2s infinite; }
@@ -683,7 +682,7 @@
           </svg>
         </div>
         <h3>NeuroMicrophone</h3>
-        <p class="desc">Нейросеть RNNoise убирает шум и эхо из микрофона в реальном времени — для стримов, записи роликов и звонков.</p>
+        <p class="desc">Нейросеть RNNoise убирает шум и эхо из микрофона в реальном времени — всего за 15 секунд самостоятельно настроит ваш микрофон под студийное звучание (не ищите блоггеров которые советуют херню)</p>
         <div class="card-actions">
           <div class="dl-wrap">
             <a class="btn btn-primary" href="#">
@@ -709,7 +708,7 @@
           </svg>
         </div>
         <h3>NeuroStream</h3>
-        <p class="desc">Помощник стримера: сцены, чат и статус трансляции под рукой в одном окне.</p>
+        <p class="desc">Помощник стримера: Озвучка сообщений чатов стрима из AxelChat и ТикТок а также аллерты на подарки в Тикток, подписки, лайки и многое другое (бесплатный аналог TikFinity)</p>
         <div class="card-actions">
           <div class="dl-wrap">
             <span class="btn btn-soon" style="width: 100%; display:block; text-align:center; padding:12px; border-radius:12px;">Скоро</span>
@@ -732,7 +731,7 @@
           </svg>
         </div>
         <h3>NeuroCamera</h3>
-        <p class="desc">Автонастройка баланса белого и экспозиции по лицу за 15 секунд, вывод — отдельной виртуальной камерой.</p>
+        <p class="desc">Автонастройка сочной картинки вашей камеры по лицу за 15 секунд, моментальная вставка настроек камеры в OBS studio путём нажатием одной кнопки.</p>
         <div class="card-actions">
           <div class="dl-wrap">
             <a class="btn btn-primary" href="#">
@@ -762,7 +761,7 @@
           </svg>
         </div>
         <h3>NeuroSpec</h3>
-        <p class="desc">Показывает характеристики ПК — процессор, видеокарта, ОЗУ, диски — и копирует их в буфер одним кликом.</p>
+        <p class="desc">Показывает характеристики ПК — процессор, видеокарта, ОЗУ, диски — и копирует их в буфер одним кликом а также выдаёт скрин всех параметров вашего ПК + оценка производительности вашего ПК и проверка совместимости с играми на ПК.</p>
         <div class="card-actions">
           <div class="dl-wrap">
             <a class="btn btn-primary" href="#">
@@ -789,7 +788,7 @@
           </svg>
         </div>
         <h3>NeuroOverlay</h3>
-        <p class="desc">Личный кабинет для стрим-оверлея: вход через Telegram и персональная ссылка для OBS — скачивать не нужно.</p>
+        <p class="desc">Личный кабинет для стрим-оверлея: вход через Telegram и персональная ссылка для OBS — скачивать не нужно. Оформи свой стрим красиво - отличайся от тусклых конкурентов по стримингу, выделись.</p>
         <div class="card-actions">
           <div class="dl-wrap">
             <a class="btn btn-primary" href="https://neurooverlay.webtkachdenis.workers.dev/dashboard" target="_blank" rel="noopener">

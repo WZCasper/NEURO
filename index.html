@@ -439,7 +439,6 @@
     opacity: 0.1;
   }
 
-  /* Специфичная анимация бота для 6-й карточки */
   @keyframes bot-animate {
     0%, 100% { transform: translateY(0) scale(1) rotate(-5deg); filter: drop-shadow(0 0 0 rgba(42, 171, 238, 0)); }
     50% { transform: translateY(-15px) scale(1.05) rotate(5deg); filter: drop-shadow(0 0 25px rgba(42, 171, 238, 0.6)); opacity: 0.2; }
@@ -669,7 +668,6 @@
 
     <div class="apps-grid">
       
-      <!-- Карточка 1: NeuroMicrophone -->
       <article class="app-card" data-accent="violet">
         <div class="app-card-bg">
           <svg class="bg-icon" style="animation-delay: -1s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -697,7 +695,6 @@
         <a class="more-link" href="#">Подробнее о NeuroMicrophone</a>
       </article>
 
-      <!-- Карточка 2: NeuroStream -->
       <article class="app-card" data-accent="teal">
         <div class="app-card-bg">
           <svg class="bg-icon" style="animation-delay: -2s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -721,7 +718,6 @@
         <a class="more-link" href="#">Подробнее о NeuroStream</a>
       </article>
 
-      <!-- Карточка 3: NeuroCamera -->
       <article class="app-card" data-accent="cyan">
         <div class="app-card-bg">
           <svg class="bg-icon" style="animation-delay: -3s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -748,7 +744,6 @@
         <a class="more-link" href="#">Подробнее о NeuroCamera</a>
       </article>
 
-      <!-- Карточка 4: NeuroSpec -->
       <article class="app-card" data-accent="amber">
         <div class="app-card-bg">
           <svg class="bg-icon" style="animation-delay: -4s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -779,7 +774,6 @@
         <a class="more-link" href="#">Подробнее о NeuroSpec</a>
       </article>
 
-      <!-- Карточка 5: NeuroOverlay -->
       <article class="app-card" data-accent="magenta">
         <div class="app-card-bg">
           <svg class="bg-icon" style="animation-delay: -5s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -788,7 +782,7 @@
             <line x1="9" y1="21" x2="9" y2="9"></line>
           </svg>
         </div>
-        <span class="pill is-soon"><span class="dot"></span>Уточняется</span>
+        <span class="pill is-live"><span class="dot"></span>Доступно</span>
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2 L3 7 L12 12 L21 7 Z"/><path d="M3 12 L12 17 L21 12"/><path d="M3 17 L12 22 L21 17"/>
@@ -807,7 +801,6 @@
         <a class="more-link" href="#">Подробнее о NeuroOverlay</a>
       </article>
 
-      <!-- Карточка 6: Телеграм бот -->
       <article class="app-card" data-accent="blue">
         <div class="app-card-bg bot-bg-container">
           <!-- Анимированный бот/андроид -->

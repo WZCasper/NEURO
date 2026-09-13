@@ -13,8 +13,10 @@
 | NeuroMicrophone | Доступна | [WZCasper/NeuroMicrofon](https://github.com/WZCasper/NeuroMicrofon) |
 | NeuroCamera | Доступна | [WZCasper/NeuroCamera](https://github.com/WZCasper/NeuroCamera) |
 | NeuroSpec | Доступна | [WZCasper/NeuroSpec](https://github.com/WZCasper/NeuroSpec) |
-| NeuroOverlay | В разработке | [WZCasper/NeuroOverlay](https://github.com/WZCasper/NeuroOverlay) |
+| NeuroOverlay | Веб-сервис (вход через Telegram), live-адрес уточняется | [WZCasper/NeuroOverlay](https://github.com/WZCasper/NeuroOverlay) |
 | NeuroStream | В разработке | репозиторий пока не создан |
+
+> NeuroOverlay — не .exe, а сайт на Cloudflare Workers с личным кабинетом и персональной ссылкой на оверлей для OBS/TikTok LIVE Studio. На сайте кнопка ведёт в Telegram, пока не подставлен постоянный адрес кабинета.
 
 ## Структура репозитория
 

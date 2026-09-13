@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NeuroMicrophone — NEURO</title>
-<meta name="description" content="AI-шумоподавление для микрофона в реальном времени. Бесплатная программа NEURO от Casper.">
+<meta name="description" content="Нейросетевое шумоподавление для микрофона в реальном времени. Бесплатная программа NEURO от Casper.">
 <meta name="theme-color" content="#0a0b14">
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
 <meta property="og:title" content="NeuroMicrophone — NEURO">
-<meta property="og:description" content="AI-шумоподавление для микрофона в реальном времени">
+<meta property="og:description" content="Нейросетевое шумоподавление для микрофона в реальном времени">
 <meta property="og:type" content="website">
 </head>
 <body data-accent="violet">
@@ -54,11 +54,11 @@
       <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
       <div>
         <h1>NeuroMicrophone</h1>
-        <p class="tagline">AI-шумоподавление для микрофона в реальном времени</p>
+        <p class="tagline">Нейросетевое шумоподавление для микрофона в реальном времени</p>
       </div>
     </div>
     <span class="pill is-live"><span class="dot"></span>Доступно</span>
-    <p class="lede">NeuroMicrophone очищает голос от фонового шума, эха и посторонних звуков во время стрима, записи или звонка. Программа работает как отдельное виртуальное устройство, поэтому подключается в OBS, Discord, Zoom и в любой программе, где можно выбрать микрофон.</p>
+    <p class="lede">NeuroMicrophone очищает голос от фонового шума, эха и посторонних звуков во время стрима, записи или звонка: нейросеть RNNoise, шумовой гейт, автоматическая регулировка громкости и лимитер работают одной цепочкой. Обработанный звук выходит на виртуальное устройство, которое подключается в OBS, Discord, Zoom и любой другой программе.</p>
     
     <div class="app-hero-actions">
       <div class="dl-wrap">
@@ -83,15 +83,23 @@
       <ul class="feature-list">
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Шумоподавление в реальном времени</h4><p>Убирает гул кулеров, шум клавиатуры, эхо комнаты и посторонние звуки без заметной задержки.</p></div>
+        <div><h4>Нейросетевое шумоподавление</h4><p>RNNoise распознаёт голос и отделяет его от гула кулеров, клавиатуры и шума комнаты, дальше сигнал проходит гейт, автоматическую регулировку громкости и лимитер.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Отдельное виртуальное устройство</h4><p>Появляется в списке микрофонов как NeuroMicrophone — выберите его один раз в настройках стрима или звонка.</p></div>
+        <div><h4>Автонастройка за 15 секунд</h4><p>Три коротких этапа — тишина, обычная речь, громкая речь — и программа сама подбирает пороги под ваш голос и комнату.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Простое включение</h4><p>Обработка звука включается одной кнопкой, без сложных профилей и настроек.</p></div>
+        <div><h4>Готовые пресеты</h4><p>«Тихая комната», «Шумный опенспейс», «Стрим» — применяются мгновенно, без автонастройки.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Самопрослушивание</h4><p>Можно услышать обработанный звук в наушниках отдельно от того, что уходит на стрим или звонок.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Хоткей и трей</h4><p>Заглушить микрофон можно комбинацией Ctrl+Shift+M, программа сворачивается в трей и умеет запускаться вместе с Windows.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>

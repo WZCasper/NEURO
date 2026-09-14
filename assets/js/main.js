@@ -1,156 +1,175 @@
-/* NEURO — site interactions: nav, neural background, tilt, cursor glow */
+/* NEURO — общие скрипты сайта: год в футере, меню разработчика/соцсетей,
+   мобильное меню, курсор-свечение, 3D-наклон карточек, нейросеть на canvas.
+   Файл используется на всех страницах сайта, поэтому каждый блок проверяет,
+   что нужные элементы вообще есть на странице, прежде чем с ними работать. */
 (function () {
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------------- mobile nav ---------------- */
-  var toggle = document.querySelector(".nav-toggle");
-  var links = document.querySelector(".nav-links");
-  if (toggle && links) {
-    toggle.addEventListener("click", function () {
-      var open = links.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    links.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () { links.classList.remove("open"); });
-    });
-  }
-
-  /* ---------------- footer year ---------------- */
+  /* ---------------- год в футере ---------------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
 
-  /* ---------------- card 3D tilt ---------------- */
+  /* ---------------- мобильное меню ---------------- */
+  var navToggle = document.querySelector(".nav-toggle");
+  var navLinks = document.querySelector(".nav-links");
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", function () {
+      var open = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    navLinks.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { navLinks.classList.remove("open"); });
+    });
+  }
+
+  /* ---------------- модальное окно «Разработчик / Мои соцсети» ---------------- */
+  var devBtn = document.getElementById("dev-btn");
+  var devModal = document.getElementById("dev-modal");
+  var devModalClose = document.getElementById("dev-modal-close");
+  var devModalOverlay = document.getElementById("dev-modal-overlay");
+
+  if (devBtn && devModal) {
+    function openModal() {
+      devModal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      devModal.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+    devBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openModal();
+    });
+    if (devModalClose) devModalClose.addEventListener("click", closeModal);
+    if (devModalOverlay) devModalOverlay.addEventListener("click", closeModal);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeModal();
+    });
+  }
+
+  /* ---------------- курсор-свечение ---------------- */
+  var cursor = document.getElementById("cursor-glow");
   var canHover = window.matchMedia("(hover: hover)").matches;
+  if (cursor && canHover && !reduceMotion) {
+    document.addEventListener("mousemove", function (e) {
+      cursor.style.transform = "translate(" + e.clientX + "px, " + e.clientY + "px)";
+    });
+  }
+
+  /* ---------------- 3D-наклон карточек ---------------- */
   if (canHover && !reduceMotion) {
     document.querySelectorAll(".app-card").forEach(function (card) {
-      var rect;
-      card.addEventListener("pointerenter", function () { rect = card.getBoundingClientRect(); });
-      card.addEventListener("pointermove", function (e) {
-        if (!rect) rect = card.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform =
-          "perspective(900px) rotateX(" + (py * -7).toFixed(2) + "deg) rotateY(" + (px * 9).toFixed(2) + "deg) translateZ(0)";
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var cx = rect.width / 2, cy = rect.height / 2;
+        var rotateX = ((y - cy) / cy) * -10;
+        var rotateY = ((x - cx) / cx) * 10;
+        card.style.transform = "perspective(1000px) rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg) scale3d(1.02,1.02,1.02)";
       });
-      card.addEventListener("pointerleave", function () {
-        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+      card.addEventListener("mouseleave", function () {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
       });
     });
   }
 
-  /* ---------------- cursor glow ---------------- */
-  var glow = document.getElementById("cursor-glow");
-  if (glow && canHover && !reduceMotion) {
-    var gx = window.innerWidth / 2, gy = window.innerHeight / 2, cx = gx, cy = gy;
-    window.addEventListener("pointermove", function (e) { gx = e.clientX; gy = e.clientY; });
-    (function loop() {
-      cx += (gx - cx) * 0.12;
-      cy += (gy - cy) * 0.12;
-      glow.style.transform = "translate(" + cx + "px," + cy + "px) translate(-50%,-50%)";
-      requestAnimationFrame(loop);
-    })();
-  }
-
-  /* ---------------- neural network canvas ---------------- */
+  /* ---------------- нейросеть-частицы на canvas ---------------- */
   var canvas = document.getElementById("neuro-canvas");
   if (canvas && canvas.getContext) {
     var ctx = canvas.getContext("2d");
-    var w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var nodes = [];
-    var NODE_COUNT = window.innerWidth < 700 ? 34 : 60;
-    var LINK_DIST = 150;
-    var mouse = { x: null, y: null };
-    var parallax = { x: 0, y: 0 };
+    var particles = [];
+    var particleCount = window.innerWidth < 700 ? 55 : 100;
+    var connectionDistance = 150;
+    var mouseAttractDistance = 200;
+    var canvasMouseX = window.innerWidth / 2, canvasMouseY = window.innerHeight / 2;
 
-    function resize() {
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    if (canHover) {
+      window.addEventListener("mousemove", function (e) {
+        canvasMouseX = e.clientX;
+        canvasMouseY = e.clientY;
+      });
     }
 
-    function makeNodes() {
-      nodes = [];
-      for (var i = 0; i < NODE_COUNT; i++) {
-        var z = Math.random(); // 0 = far, 1 = near -> depth
-        nodes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          z: z,
-          vx: (Math.random() - 0.5) * (0.12 + z * 0.18),
-          vy: (Math.random() - 0.5) * (0.12 + z * 0.18),
-          r: 1.1 + z * 2.1
-        });
+    function Particle() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.8;
+      this.vy = (Math.random() - 0.5) * 0.8;
+      this.radius = Math.random() * 2 + 1;
+      var colors = ["#7c5cff", "#33e6d8", "#ff4fc3"];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    Particle.prototype.update = function () {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+      var dx = canvasMouseX - this.x, dy = canvasMouseY - this.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < mouseAttractDistance && dist > 0) {
+        var fx = dx / dist, fy = dy / dist;
+        var force = (mouseAttractDistance - dist) / mouseAttractDistance;
+        this.vx += fx * force * 0.02;
+        this.vy += fy * force * 0.02;
+        var speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        if (speed > 2) { this.vx = (this.vx / speed) * 2; this.vy = (this.vy / speed) * 2; }
       }
+    };
+    Particle.prototype.draw = function () {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    };
+
+    for (var i = 0; i < particleCount; i++) particles.push(new Particle());
+
+    function hexToRgba(hex, alpha) {
+      var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
     }
 
-    resize();
-    makeNodes();
-    window.addEventListener("resize", function () { resize(); makeNodes(); });
-
-    window.addEventListener("pointermove", function (e) {
-      var rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      parallax.x = (mouse.x / rect.width - 0.5) * 18;
-      parallax.y = (mouse.y / rect.height - 0.5) * 18;
-    });
-    window.addEventListener("pointerleave", function () { mouse.x = null; mouse.y = null; });
-
-    var hue = 250; // violet base, drifts slowly
-
-    function tick() {
-      ctx.clearRect(0, 0, w, h);
-      hue += 0.045;
-      if (hue > 360) hue -= 360;
-
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        n.x += n.vx + parallax.x * 0.0025 * n.z;
-        n.y += n.vy + parallax.y * 0.0025 * n.z;
-        if (n.x < -20) n.x = w + 20; if (n.x > w + 20) n.x = -20;
-        if (n.y < -20) n.y = h + 20; if (n.y > h + 20) n.y = -20;
-      }
-
-      for (var a = 0; a < nodes.length; a++) {
-        for (var b = a + 1; b < nodes.length; b++) {
-          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+    function drawFrame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var a = 0; a < particles.length; a++) {
+        particles[a].update();
+        particles[a].draw();
+        for (var b = a + 1; b < particles.length; b++) {
+          var dx = particles[a].x - particles[b].x, dy = particles[a].y - particles[b].y;
           var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DIST) {
-            var alpha = (1 - dist / LINK_DIST) * 0.5 * ((nodes[a].z + nodes[b].z) / 2);
-            ctx.strokeStyle = "hsla(" + (hue + 60) + ",90%,70%," + alpha.toFixed(3) + ")";
+          if (dist < connectionDistance) {
+            var opacity = 1 - dist / connectionDistance;
+            var grad = ctx.createLinearGradient(particles[a].x, particles[a].y, particles[b].x, particles[b].y);
+            grad.addColorStop(0, hexToRgba(particles[a].color, opacity * 0.5));
+            grad.addColorStop(1, hexToRgba(particles[b].color, opacity * 0.5));
+            ctx.strokeStyle = grad;
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(nodes[a].x, nodes[a].y);
-            ctx.lineTo(nodes[b].x, nodes[b].y);
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
             ctx.stroke();
           }
         }
       }
-
-      for (var j = 0; j < nodes.length; j++) {
-        var node = nodes[j];
-        var nodeHue = hue + node.z * 120;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = "hsla(" + nodeHue + ",95%,72%," + (0.35 + node.z * 0.5).toFixed(3) + ")";
-        ctx.shadowBlur = 8 * node.z;
-        ctx.shadowColor = "hsla(" + nodeHue + ",95%,70%,0.9)";
-        ctx.fill();
-      }
-      ctx.shadowBlur = 0;
-
-      if (!reduceMotion) requestAnimationFrame(tick);
     }
 
     if (reduceMotion) {
-      tick(); // draw a single static frame, no animation loop
+      drawFrame(); // один статичный кадр вместо непрерывной анимации
     } else {
-      requestAnimationFrame(tick);
+      (function animate() { drawFrame(); requestAnimationFrame(animate); })();
     }
   }
 })();

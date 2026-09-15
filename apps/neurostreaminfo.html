@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeuroStreamInfo — NEURO</title>
+<meta name="description" content="Telegram-бот для автоматических анонсов эфиров. Бесплатная программа NEURO от Casper.">
+<meta name="theme-color" content="#0a0b14">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<meta property="og:title" content="NeuroStreamInfo — NEURO">
+<meta property="og:description" content="Telegram-бот для автоматических анонсов эфиров">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wzcasper.github.io/NEURO/apps/neurostreaminfo.html">
+<meta property="og:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
+</head>
+<body data-accent="blue">
+
+<div id="cursor-glow"></div>
+<canvas id="neuro-canvas"></canvas>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="navgA" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+        </linearGradient></defs>
+        <g stroke="url(#navgA)" stroke-width="2.6" stroke-linecap="round" fill="none">
+          <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+        </g>
+        <g fill="url(#navgA)">
+          <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+          <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+          <circle cx="32" cy="32" r="4.6"/>
+        </g>
+      </svg>
+      <span>NEURO</span>
+    </a>
+    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html#apps">Программы</a>
+      <a href="../index.html#donate">Поддержать</a>
+      <a class="nav-cta" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</nav>
+
+<header class="app-hero" data-accent="blue">
+  <div class="wrap">
+    <div class="app-hero-top">
+      <div class="app-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.896-.667 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
+      <div>
+        <h1>NeuroStreamInfo</h1>
+        <p class="tagline">Telegram-бот для автоматических анонсов эфиров</p>
+      </div>
+    </div>
+    <span class="pill is-live blue"><span class="dot"></span>Веб-сервис</span>
+    <p class="lede">NeuroStreamInfo следит за вашими каналами и сам публикует анонс в Telegram-группу, как только начинается трансляция или выходит новый ролик — на YouTube, TikTok, VK Live, Twitch и Kick. Ничего скачивать не нужно: добавьте бота в группу и забудьте о ручных постах.</p>
+    
+    <div class="app-hero-actions">
+      <div class="dl-wrap">
+            <a class="btn btn-primary" href="https://t.me/NeuroCasperBot" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+              <span class="js-download-label">Открыть бота в Telegram</span>
+            </a>
+            <div class="dl-meta">Telegram-бот, добавляется в группу за минуту</div>
+          </div>
+      <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
+        Вопросы и FAQ
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="detail-grid">
+    <div>
+      <h2 class="title" style="font-size:24px">Что умеет бот</h2>
+      <ul class="feature-list">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Анонсы без ручных постов</h4><p>Бот сам публикует сообщение в группу, как только вы выходите в эфир или заливаете новый ролик.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Пять площадок сразу</h4><p>Следит за YouTube, TikTok, VK Live, Twitch и Kick — не нужно ставить бота на каждую площадку отдельно.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Мгновенная реакция</h4><p>Анонс приходит сразу после начала эфира, а не через 10-15 минут, как у многих аналогов.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
+        <div><h4>Простое подключение</h4><p>Добавляется в группу как обычный Telegram-бот, без токенов и настройки вебхуков вручную.</p></div>
+      </li>
+      </ul>
+    </div>
+    <aside>
+      <div class="side-card">
+        <h4>Требования</h4>
+        <dl>
+        <div class="row"><dt>Нужна установка</dt><dd>Нет — работает внутри Telegram</dd></div>
+        <div class="row"><dt>Площадки</dt><dd>YouTube, TikTok, VK Live, Twitch, Kick</dd></div>
+        <div class="row"><dt>Цена</dt><dd>Бесплатно</dd></div>
+        </dl>
+      </div>
+      <div class="side-card">
+        <h4>Программа</h4>
+        <dl>
+          <div class="row"><dt>Разработчик</dt><dd>Casper</dd></div>
+          
+
+        </dl>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="donate">
+      <div>
+        <h2>NeuroStreamInfo — бесплатно, как и все программы NEURO</h2>
+        <p>Если программа пригодилась, можно поддержать разработку добровольным донатом. На доступ к программам это не влияет.</p>
+      </div>
+      <a class="btn btn-primary" href="https://dalink.to/wz_casper" target="_blank" rel="noopener" style="padding:16px 30px; font-size:15px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21 C7 17 3 13.5 3 9.3 C3 6.4 5.3 4 8.2 4 C9.8 4 11.3 4.8 12.2 6.1 C13.1 4.8 14.6 4 16.2 4 C19.1 4 21.4 6.4 21.4 9.3 C21.4 13.5 17 17 12 21 Z"/></svg>
+        Поддержать проект
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="navgB" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#33e6d8"/><stop offset="1" stop-color="#ff4fc3"/>
+            </linearGradient></defs>
+            <g stroke="url(#navgB)" stroke-width="2.6" stroke-linecap="round" fill="none">
+              <path d="M32 14 L18 24 M32 14 L46 24 M18 24 L18 40 M46 24 L46 40 M18 40 L32 50 M46 40 L32 50 M32 14 L32 32 M18 24 L32 32 M46 24 L32 32 M18 40 L32 32 M46 40 L32 32 M32 50 L32 32"/>
+            </g>
+            <g fill="url(#navgB)">
+              <circle cx="32" cy="14" r="3.6"/><circle cx="18" cy="24" r="3.6"/><circle cx="46" cy="24" r="3.6"/>
+              <circle cx="18" cy="40" r="3.6"/><circle cx="46" cy="40" r="3.6"/><circle cx="32" cy="50" r="3.6"/>
+              <circle cx="32" cy="32" r="4.6"/>
+            </g>
+          </svg>
+          <span>NEURO</span>
+        </a>
+        <p>Бесплатные программы для стриминга и записи от Casper 亗 Денис — белорусского стримера и guide-блогера.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Программы</h5>
+          <a href="neuromicrophone.html">NeuroMicrophone</a>
+          <a href="neurostream.html">NeuroStream</a>
+          <a href="neurocamera.html">NeuroCamera</a>
+          <a href="neurospec.html">NeuroSpec</a>
+          <a href="neuroverlay.html">NeuroOverlay</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="../index.html#donate">Поддержать разработку</a>
+          <a href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Вопросы в Telegram</a>
+          <a href="https://github.com/WZCasper/NEURO" target="_blank" rel="noopener">Код сайта на GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> NEURO · Casper 亗 Денис</span>
+      <span>Все программы бесплатны и безопасны</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/downloads.js"></script>
+</body>
+</html>

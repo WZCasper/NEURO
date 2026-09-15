@@ -126,3 +126,37 @@
     });
   });
 })();
+
+/* История версий (changelog) — показывает последние релизы репозитория */
+(function () {
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+    } catch (e) { return ""; }
+  }
+
+  function renderChangelog(el, repo) {
+    fetch("https://api.github.com/repos/" + repo + "/releases?per_page=6", {
+      headers: { Accept: "application/vnd.github+json" }
+    }).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function (list) {
+      if (!list.length) {
+        el.innerHTML = '<li class="changelog-empty">Релизов пока нет</li>';
+        return;
+      }
+      el.innerHTML = list.map(function (r) {
+        var date = formatDate(r.published_at || r.created_at);
+        return '<li><span class="changelog-tag">' + r.tag_name + '</span>' +
+               (date ? '<span class="changelog-date">' + date + '</span>' : '') + '</li>';
+      }).join("");
+    }).catch(function () {
+      el.innerHTML = '<li class="changelog-empty">Не удалось загрузить историю версий</li>';
+    });
+  }
+
+  document.querySelectorAll(".changelog-list[data-repo]").forEach(function (el) {
+    renderChangelog(el, el.getAttribute("data-repo"));
+  });
+})();

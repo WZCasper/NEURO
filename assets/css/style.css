@@ -47,6 +47,7 @@
 [data-accent="magenta"] { --accent: var(--c-magenta); }
 [data-accent="amber"]   { --accent: var(--c-amber); }
 [data-accent="teal"]    { --accent: var(--c-teal); }
+[data-accent="blue"]    { --accent: #2AABEE; }
 
 /* ---------- reset ---------------------------------------------------- */
 *, *::before, *::after{ box-sizing: border-box; }
@@ -1099,3 +1100,14 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
     .apps-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
+
+/* ---------- changelog (история версий) ---------------------------------------------------- */
+.changelog-list{ display:grid; gap:10px; list-style:none; margin:0; padding:0; }
+.changelog-list li{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  font-size:13.5px; padding:8px 0; border-bottom:1px dashed var(--line);
+}
+.changelog-list li:last-child{ border-bottom:none; padding-bottom:0; }
+.changelog-tag{ font-family:var(--f-display); font-weight:600; color:var(--ink); }
+.changelog-date{ color:var(--muted); text-align:right; }
+.changelog-empty{ color:var(--muted); justify-content:flex-start !important; }

@@ -937,13 +937,13 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
     right: -30px;
     width: 180px;
     height: 180px;
-    opacity: 0.05;
+    opacity: 0.12;
     animation: bg-float 6s ease-in-out infinite;
     transition: opacity 0.3s ease;
   }
 
   .app-card:hover .bg-icon {
-    opacity: 0.1;
+    opacity: 0.22;
   }
 
   @keyframes bot-animate {
@@ -956,7 +956,7 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
     bottom: -40px;
     right: -20px;
     animation: bot-animate 3s ease-in-out infinite;
-    opacity: 0.1;
+    opacity: 0.16;
   }
   .app-card[data-accent="blue"]:hover .bg-icon.bot-bg {
     opacity: 0.3;

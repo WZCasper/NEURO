@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NeuroOverlay — NEURO</title>
-<meta name="description" content="Личный кабинет для стрим-оверлея — без установки на ПК. Бесплатная программа NEURO от Casper.">
+<title>NeuroStreamInfo — NEURO</title>
+<meta name="description" content="Telegram-бот для автоматических анонсов эфиров. Бесплатная программа NEURO от Casper.">
 <meta name="theme-color" content="#0a0b14">
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link rel="stylesheet" href="../assets/css/style.css">
-<meta property="og:title" content="NeuroOverlay — NEURO">
-<meta property="og:description" content="Личный кабинет для стрим-оверлея — без установки на ПК">
+<meta property="og:title" content="NeuroStreamInfo — NEURO">
+<meta property="og:description" content="Telegram-бот для автоматических анонсов эфиров">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://wzcasper.github.io/NEURO/apps/neuroverlay.html">
+<meta property="og:url" content="https://wzcasper.github.io/NEURO/apps/neurostreaminfo.html">
 <meta property="og:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
 </head>
-<body data-accent="magenta">
+<body data-accent="blue">
 
 <div id="cursor-glow"></div>
 <canvas id="neuro-canvas"></canvas>
@@ -53,25 +53,25 @@
   </div>
 </nav>
 
-<header class="app-hero" data-accent="magenta">
+<header class="app-hero" data-accent="blue">
   <div class="wrap">
     <div class="app-hero-top">
-      <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L3 7 L12 12 L21 7 Z"/><path d="M3 12 L12 17 L21 12"/><path d="M3 17 L12 22 L21 17"/></svg></div>
+      <div class="app-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.896-.667 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
       <div>
-        <h1>NeuroOverlay</h1>
-        <p class="tagline">Личный кабинет для стрим-оверлея — без установки на ПК</p>
+        <h1>NeuroStreamInfo</h1>
+        <p class="tagline">Telegram-бот для автоматических анонсов эфиров</p>
       </div>
     </div>
-    <span class="pill is-soon"><span class="dot"></span>Уточняется</span>
-    <p class="lede">NeuroOverlay — не программа для скачивания, а веб-сервис: вход через Telegram, личный кабинет с настройками виджетов и персональная ссылка на оверлей, которую нужно один раз вставить в OBS Studio (источник «Браузер») или в TikTok LIVE Studio. Изменения в кабинете появляются на оверлее мгновенно, без перезапуска источника.</p>
-    <p class="lede" style="margin-top:14px;font-size:14.5px;color:var(--ink-dim)">Сервис разворачивается на своём поддомене — актуальную ссылку на личный кабинет уточняйте в Telegram.</p>
+    <span class="pill is-live blue"><span class="dot"></span>Веб-сервис</span>
+    <p class="lede">NeuroStreamInfo следит за вашими каналами и сам публикует анонс в Telegram-группу, как только начинается трансляция или выходит новый ролик — на YouTube, TikTok, VK Live, Twitch и Kick. Ничего скачивать не нужно: добавьте бота в группу и забудьте о ручных постах.</p>
+    
     <div class="app-hero-actions">
       <div class="dl-wrap">
-            <a class="btn btn-primary" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="https://t.me/NeuroCasperBot" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
-              <span class="js-download-label">Спросить доступ в Telegram</span>
+              <span class="js-download-label">Открыть бота в Telegram</span>
             </a>
-            <div class="dl-meta">Веб-сервис, ничего скачивать не нужно</div>
+            <div class="dl-meta">Telegram-бот, добавляется в группу за минуту</div>
           </div>
       <a class="btn btn-ghost" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12 L21 3 L14 21 L11 13 L2 12 Z M11 13 L21 3"/></svg>
@@ -84,27 +84,23 @@
 <div class="wrap">
   <div class="detail-grid">
     <div>
-      <h2 class="title" style="font-size:24px">Что умеет сервис</h2>
+      <h2 class="title" style="font-size:24px">Что умеет бот</h2>
       <ul class="feature-list">
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Вход через Telegram</h4><p>Без пароля и почты — авторизация подписью Telegram, которая проверяется на сервере.</p></div>
+        <div><h4>Анонсы без ручных постов</h4><p>Бот сам публикует сообщение в группу, как только вы выходите в эфир или заливаете новый ролик.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Личная ссылка на оверлей</h4><p>Один раз вставляется в OBS или TikTok LIVE Studio как источник — дальше всё меняется из кабинета.</p></div>
+        <div><h4>Пять площадок сразу</h4><p>Следит за YouTube, TikTok, VK Live, Twitch и Kick — не нужно ставить бота на каждую площадку отдельно.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Мгновенные обновления</h4><p>Изменили виджет в кабинете — оверлей на трансляции обновился в течение секунды, без пересоздания источника.</p></div>
+        <div><h4>Мгновенная реакция</h4><p>Анонс приходит сразу после начала эфира, а не через 10-15 минут, как у многих аналогов.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Несколько профилей</h4><p>Можно держать отдельные раскладки для разных форматов, например 16:9 и 9:16, и переключаться между ними.</p></div>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
-        <div><h4>Ссылку можно обновить</h4><p>Если ссылка на оверлей куда-то «утекла» — старую отключает одна кнопка в кабинете, выдаётся новая.</p></div>
+        <div><h4>Простое подключение</h4><p>Добавляется в группу как обычный Telegram-бот, без токенов и настройки вебхуков вручную.</p></div>
       </li>
       </ul>
     </div>
@@ -112,8 +108,8 @@
       <div class="side-card">
         <h4>Требования</h4>
         <dl>
-        <div class="row"><dt>Нужна установка</dt><dd>Нет — всё работает в браузере и в источнике OBS/TikTok</dd></div>
-        <div class="row"><dt>Вход</dt><dd>Через Telegram</dd></div>
+        <div class="row"><dt>Нужна установка</dt><dd>Нет — работает внутри Telegram</dd></div>
+        <div class="row"><dt>Площадки</dt><dd>YouTube, TikTok, VK Live, Twitch, Kick</dd></div>
         <div class="row"><dt>Цена</dt><dd>Бесплатно</dd></div>
         </dl>
       </div>
@@ -121,7 +117,7 @@
         <h4>Программа</h4>
         <dl>
           <div class="row"><dt>Разработчик</dt><dd>Casper</dd></div>
-          <div class="row"><dt>Репозиторий</dt><dd><a href="https://github.com/WZCasper/NeuroOverlay" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></dd></div>
+          
 
         </dl>
       </div>
@@ -133,7 +129,7 @@
   <div class="wrap">
     <div class="donate">
       <div>
-        <h2>NeuroOverlay — бесплатно, как и все программы NEURO</h2>
+        <h2>NeuroStreamInfo — бесплатно, как и все программы NEURO</h2>
         <p>Если программа пригодилась, можно поддержать разработку добровольным донатом. На доступ к программам это не влияет.</p>
       </div>
       <a class="btn btn-primary" href="https://dalink.to/wz_casper" target="_blank" rel="noopener" style="padding:16px 30px; font-size:15px;">

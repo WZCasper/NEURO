@@ -604,6 +604,11 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
     justify-content: space-between;
     align-items: center;
   }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
   .brand {
     display: flex;
     align-items: center;
@@ -1079,6 +1084,8 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
     .donate { flex-direction: column; text-align: center; }
   }
   @media (max-width: 768px) {
+    .nav-right { gap: 12px; }
+    .nav-cta#dev-btn { padding: 8px 14px; font-size: 13px; }
     .nav-links { display: none; }
     .nav-toggle { display: block; background: none; border: none; cursor: pointer; padding: 8px; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: 0.3s; }

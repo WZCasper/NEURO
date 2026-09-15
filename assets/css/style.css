@@ -668,7 +668,7 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
   .dev-modal-content {
     position: relative;
     z-index: 1;
-    background: linear-gradient(rgba(3, 4, 11, 0.85), rgba(3, 4, 11, 0.85)), url('photo_2026-08-24_13-00-02.jpg') no-repeat center center / cover;
+    background: linear-gradient(rgba(3, 4, 11, 0.85), rgba(3, 4, 11, 0.85)), url('../img/photo_2026-08-24_13-00-02.jpg') no-repeat center center / cover;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-color);

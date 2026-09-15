@@ -160,13 +160,6 @@ h2.title{
   transition: color .2s ease, background .2s ease;
 }
 .nav-links a:hover{ color: var(--ink); background: rgba(255,255,255,.05); }
-.nav-cta{
-  padding: 10px 20px !important;
-  border-radius: 999px;
-  background: linear-gradient(120deg, var(--c-violet), var(--c-cyan));
-  color: #06070d !important;
-  font-weight: 700;
-}
 .nav-toggle{ display: none; }
 
 @media (max-width: 860px){

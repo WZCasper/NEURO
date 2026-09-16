@@ -166,10 +166,9 @@
       }
     }
 
-    if (reduceMotion) {
-      drawFrame(); // один статичный кадр вместо непрерывной анимации
-    } else {
-      (function animate() { drawFrame(); requestAnimationFrame(animate); })();
-    }
+    /* Фоновая сетка — часть фирменного стиля сайта, оставляем её живой
+       даже при системной настройке "уменьшить анимацию": движение
+       медленное, без резких скачков и параллакса. */
+    (function animate() { drawFrame(); requestAnimationFrame(animate); })();
   }
 })();

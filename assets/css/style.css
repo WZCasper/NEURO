@@ -81,6 +81,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
+  /* Декоративный фон (сетка на canvas через main.js и плавающие иконки
+     в карточках) — часть фирменного стиля сайта, оставляем мягкое
+     движение даже при "уменьшить анимацию": оно медленное и без
+     резких скачков, в отличие от наведения курсора и наклона карточек. */
+  .bg-icon, .bg-icon.bot-bg{
+    animation-duration: 6s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .bg-icon.bot-bg{ animation-duration: 3s !important; }
 }
 
 /* ---------- helpers ---------------------------------------------------- */

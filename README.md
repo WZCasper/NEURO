@@ -1,6 +1,6 @@
 # NEURO
 
-Сайт бренда NEURO — набор бесплатных программ для стриминга, записи контента и ухода за ПК: подавление шума в микрофоне, улучшение картинки с веб-камеры, оверлеи для трансляции, системная информация о ПК и оптимизация Windows.
+Сайт бренда NEURO — набор бесплатных программ для стриминга, записи контента, игр и ухода за ПК: подавление шума в микрофоне, улучшение картинки с веб-камеры, оверлеи для трансляции, озвучка игровых субтитров, системная информация о ПК и оптимизация Windows.
 
 Живая версия: https://wzcasper.github.io/NEURO/
 
@@ -14,6 +14,7 @@
 | NeuroCamera | Доступна | [WZCasper/NeuroCamera](https://github.com/WZCasper/NeuroCamera) |
 | NeuroSpec | Доступна | [WZCasper/NeuroSpec](https://github.com/WZCasper/NeuroSpec) |
 | NeuroBoost | Доступна | [WZCasper/NeuroBoost](https://github.com/WZCasper/NeuroBoost) |
+| NeuroVox | Доступна | [WZCasper/NeuroVox](https://github.com/WZCasper/NeuroVox) |
 | NeuroOverlay | Веб-сервис (вход через Telegram), live-адрес уточняется | [WZCasper/NeuroOverlay](https://github.com/WZCasper/NeuroOverlay) |
 | NeuroStream | В разработке | [WZCasper/NeuroStream](https://github.com/WZCasper/NeuroStream) |
 | NeuroStreamInfo (бот) | Доступен | [WZCasper/NeuroCasper](https://github.com/WZCasper/NeuroCasper) |
@@ -62,6 +63,15 @@ assets/img/             — favicon и графика
 - Текст и список функций каждой программы — в соответствующем файле `apps/*.html`.
 - Цвет-акцент каждой программы задаётся атрибутом `data-accent` (`violet`, `cyan`, `magenta`, `amber`, `teal`, `blue`) на карточке/шапке страницы — все шесть вариантов уже заняты, для новой программы переиспользуйте один из них так, чтобы он не стоял на главной странице в сетке рядом с карточкой того же цвета.
 - Чтобы добавить новую программу: скопировать один из файлов в `apps/`, обновить текст, иконку, `data-repo` у кнопки скачивания (`.js-download`), истории версий (`.changelog-list`) и блока «О проекте» (`.readme-desc`), добавить карточку на `index.html`, ссылку в футере на всех страницах и строку в `sitemap.xml`.
+
+## Скриншоты программы на странице
+
+На детальной странице каждой программы под шапкой может быть витрина скриншотов — 3D-карточка с лёгким наклоном, которая выравнивается при наведении или фокусе, и каруселью со стрелками/точками, если скриншотов больше одного (`assets/js/screens.js`).
+
+Чтобы добавить скриншоты новой программе:
+1. Сохранить изображения в `assets/img/screenshots/` в формате `.webp` (PNG из Windows сжимается в WebP примерно в 5–7 раз без видимой потери качества для UI-скриншотов; конвертировать можно через Pillow: `im.save("file.webp", "WEBP", quality=82, method=6)`).
+2. На странице программы между `</header>` и `<div class="detail-grid">` вставить блок `<section class="screens">…</section>` — проще всего скопировать его целиком с готовой страницы (`apps/neuroboost.html` для нескольких скриншотов, `apps/neurovox.html` для одного) и заменить пути к картинкам, `alt`-подписи и `width`/`height`.
+3. Если скриншот один — стрелки и точки-переключатели скрипт скроет сам, трогать разметку для этого не нужно.
 
 ## Контакты
 

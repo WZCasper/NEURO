@@ -415,6 +415,96 @@ h2.title{
 .app-hero-actions{ display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; align-items: center; }
 .dl-meta{ font-size: 13px; color: var(--muted); }
 
+/* ---------- скриншоты программы (3D-карусель/витрина) ------------------ */
+.screens{
+  padding: 50px 0 10px;
+}
+.screens-stage{
+  position: relative;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.screens-track{
+  position: relative;
+  max-width: min(100%, 900px);
+}
+.screens-slide{
+  display: none;
+  transform-style: preserve-3d;
+}
+.screens-slide.is-active{ display: flex; justify-content: center; }
+.screens-frame{
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  background: var(--panel-solid);
+  transform: rotateY(-10deg) rotateX(3deg) scale(0.97);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+  box-shadow:
+    -28px 34px 70px -24px color-mix(in srgb, var(--accent) 35%, transparent),
+    0 18px 40px -20px rgba(0,0,0,.6);
+  will-change: transform;
+}
+.screens-stage:hover .screens-frame,
+.screens-stage:focus-visible .screens-frame{
+  transform: rotateY(0deg) rotateX(0deg) scale(1);
+  box-shadow:
+    0 30px 60px -20px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 12px 30px -15px rgba(0,0,0,.55);
+}
+.screens-frame img{
+  display: block;
+  max-width: 100%;
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.screens-nav{
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--panel-solid) 85%, transparent);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  z-index: 3;
+}
+.screens-nav:hover{ background: color-mix(in srgb, var(--accent) 18%, var(--panel-solid)); border-color: var(--accent); }
+.screens-nav svg{ width: 20px; height: 20px; }
+.screens-nav.prev{ left: -8px; }
+.screens-nav.next{ right: -8px; }
+.screens-dots{
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 22px;
+}
+.screens-dots button{
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--line);
+  border: none; padding: 0; cursor: pointer;
+  transition: background .2s ease, width .2s ease;
+}
+.screens-dots button.is-active{
+  background: var(--accent);
+  width: 22px; border-radius: 5px;
+}
+.screens-caption{
+  text-align: center;
+  margin-top: 18px;
+  color: var(--ink-dim);
+  font-size: 13.5px;
+}
+
 .detail-grid{
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -454,6 +544,9 @@ h2.title{
 
 @media (max-width: 900px){
   .detail-grid{ grid-template-columns: 1fr; gap: 40px; }
+  .screens{ padding: 36px 0 6px; }
+  .screens-nav.prev{ left: -4px; }
+  .screens-nav.next{ right: -4px; }
 }
 
 /* ---------- free & safe strip ---------------------------------------------------- */
@@ -510,6 +603,14 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
 /* ---------- cursor glow (desktop only) ---------------------------------------------------- */
 @media (hover: none), (max-width: 860px){
   #cursor-glow{ display: none; }
+  .screens-frame{
+    transform: none;
+    box-shadow: 0 16px 36px -18px rgba(0,0,0,.55);
+  }
+  .screens-stage:hover .screens-frame{ transform: none; }
+  .screens-nav{ width: 40px; height: 40px; }
+  .screens-nav.prev{ left: 4px; }
+  .screens-nav.next{ right: 4px; }
 }
 
 /* ---------- 404 ---------------------------------------------------- */

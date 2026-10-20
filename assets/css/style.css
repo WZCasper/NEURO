@@ -40,6 +40,24 @@
   --radius-sm: 12px;
 
   --shadow-soft: 0 20px 60px rgba(4, 4, 16, .45);
+
+  /* ---- перенесено из второго :root (строка ~633, добавлен 2026-09-14) — значения сохранены как были ---- */
+  --bg-color: #03040b;
+  --bg-surface: rgba(255, 255, 255, 0.02);
+  --bg-surface-hover: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-main: #f0f0f5;
+  --text-muted: #8b8d99;
+
+  /* Акцентные цвета в стиле Cyber/Neuro */
+  --accent-violet: #7c5cff;
+  --accent-teal: #33e6d8;
+  --accent-magenta: #ff4fc3;
+  --accent-cyan: #00f0ff;
+  --accent-amber: #ffb800;
+  --accent-blue: #2AABEE; /* Для Telegram бота */
+
+  --gradient-brand: linear-gradient(135deg, var(--accent-violet), var(--accent-teal), var(--accent-magenta));
 }
 
 [data-accent="violet"]  { --accent: var(--c-violet); }
@@ -630,24 +648,7 @@ footer{ border-top: 1px solid var(--line); padding: 56px 0 40px; }
    кнопка-гамбургер ничего не открывала на телефonах.
    ========================================================================= */
 
-:root {
-    --bg-color: #03040b;
-    --bg-surface: rgba(255, 255, 255, 0.02);
-    --bg-surface-hover: rgba(255, 255, 255, 0.05);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --text-main: #f0f0f5;
-    --text-muted: #8b8d99;
-    
-    /* Акцентные цвета в стиле Cyber/Neuro */
-    --accent-violet: #7c5cff;
-    --accent-teal: #33e6d8;
-    --accent-magenta: #ff4fc3;
-    --accent-cyan: #00f0ff;
-    --accent-amber: #ffb800;
-    --accent-blue: #2AABEE; /* Для Telegram бота */
-
-    --gradient-brand: linear-gradient(135deg, var(--accent-violet), var(--accent-teal), var(--accent-magenta));
-  }
+  /* Дублирующийся :root, который был здесь, объединён с основным :root в начале файла (строка 9). */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 

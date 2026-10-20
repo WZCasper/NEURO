@@ -135,6 +135,18 @@
     } catch (e) { return ""; }
   }
 
+  function clearNode(el) {
+    while (el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function renderChangelogMessage(el, text) {
+    clearNode(el);
+    var li = document.createElement("li");
+    li.className = "changelog-empty";
+    li.textContent = text;
+    el.appendChild(li);
+  }
+
   function renderChangelog(el, repo) {
     fetch("https://api.github.com/repos/" + repo + "/releases?per_page=6", {
       headers: { Accept: "application/vnd.github+json" }
@@ -143,16 +155,27 @@
       return res.json();
     }).then(function (list) {
       if (!list.length) {
-        el.innerHTML = '<li class="changelog-empty">Релизов пока нет</li>';
+        renderChangelogMessage(el, "Релизов пока нет");
         return;
       }
-      el.innerHTML = list.map(function (r) {
+      clearNode(el);
+      list.forEach(function (r) {
         var date = formatDate(r.published_at || r.created_at);
-        return '<li><span class="changelog-tag">' + r.tag_name + '</span>' +
-               (date ? '<span class="changelog-date">' + date + '</span>' : '') + '</li>';
-      }).join("");
+        var li = document.createElement("li");
+        var tagSpan = document.createElement("span");
+        tagSpan.className = "changelog-tag";
+        tagSpan.textContent = r.tag_name;
+        li.appendChild(tagSpan);
+        if (date) {
+          var dateSpan = document.createElement("span");
+          dateSpan.className = "changelog-date";
+          dateSpan.textContent = date;
+          li.appendChild(dateSpan);
+        }
+        el.appendChild(li);
+      });
     }).catch(function () {
-      el.innerHTML = '<li class="changelog-empty">Не удалось загрузить историю версий</li>';
+      renderChangelogMessage(el, "Не удалось загрузить историю версий");
     });
   }
 

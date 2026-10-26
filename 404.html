@@ -2,9 +2,11 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Страница не найдена — NEURO</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -29,7 +31,7 @@
       </svg>
       <span>NEURO</span>
     </a>
-    <div class="nav-links" style="display:flex;position:static;opacity:1;pointer-events:auto;transform:none;background:none;border:none;padding:0;">
+    <div class="nav-links nav-links-static">
       <a href="index.html#apps">Программы</a>
       <a class="nav-cta" href="https://t.me/WZ_Casper" target="_blank" rel="noopener">Telegram</a>
     </div>
@@ -38,7 +40,7 @@
 <div class="notfound">
   <div>
     <h1 class="holo-text">404</h1>
-    <p class="lede" style="margin:18px auto 30px;">Такой страницы нет. Возможно, программа переехала или ссылка устарела.</p>
+    <p class="lede lede-spaced">Такой страницы нет. Возможно, программа переехала или ссылка устарела.</p>
     <a class="btn btn-primary" href="index.html">Вернуться на главную</a>
   </div>
 </div>

@@ -2,22 +2,50 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NeuroVox — NEURO</title>
 <meta name="description" content="Офлайн-озвучка русских субтитров в играх в реальном времени: распознаёт текст с экрана и читает его голосом Silero. Интернет нужен только один раз. Программа NEURO от Casper.">
 <meta name="theme-color" content="#0a0b14">
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://wzcasper.github.io/NEURO/apps/neurovox.html">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link rel="stylesheet" href="../assets/css/style.css">
+<link rel="preconnect" href="https://api.github.com">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
 <meta property="og:title" content="NeuroVox — NEURO">
 <meta property="og:description" content="Офлайн-озвучка игровых субтитров в реальном времени голосом Silero">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wzcasper.github.io/NEURO/apps/neurovox.html">
-<meta property="og:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
+<meta property="og:image" content="https://wzcasper.github.io/NEURO/assets/img/og-neurovox.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wzcasper.github.io/NEURO/assets/img/og-cover.png">
+<meta name="twitter:image" content="https://wzcasper.github.io/NEURO/assets/img/og-neurovox.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NeuroVox",
+  "description": "Офлайн-озвучка русских субтитров в играх в реальном времени: распознаёт текст с экрана и читает его голосом Silero. Интернет нужен только один раз. Программа NEURO от Casper.",
+  "url": "https://wzcasper.github.io/NEURO/apps/neurovox.html",
+  "image": "https://wzcasper.github.io/NEURO/assets/img/og-neurovox.png",
+  "applicationCategory": "UtilitiesApplication",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NEURO",
+    "url": "https://wzcasper.github.io/NEURO/"
+  },
+  "operatingSystem": "Windows"
+}
+</script>
 </head>
 <body data-accent="violet">
 
@@ -102,7 +130,7 @@
 <div class="wrap">
   <div class="detail-grid">
     <div>
-      <h2 class="title" style="font-size:24px">Что умеет программа</h2>
+      <h2 class="title title-sm">Что умеет программа</h2>
       <ul class="feature-list">
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 L9.5 17.5 L20 6"/></svg>
@@ -141,7 +169,7 @@
         <h4>Программа</h4>
         <dl>
           <div class="row"><dt>Разработчик</dt><dd>Casper</dd></div>
-          <div class="row"><dt>Репозиторий</dt><dd><a href="https://github.com/WZCasper/NeuroVox" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></dd></div>
+          <div class="row"><dt>Репозиторий</dt><dd><a href="https://github.com/WZCasper/NeuroVox" target="_blank" rel="noopener" class="link-accent">GitHub ↗</a></dd></div>
         </dl>
       </div>
       <div class="side-card">
@@ -156,14 +184,14 @@
   </div>
 </div>
 
-<section class="section" style="padding-top:0">
+<section class="section section-notop">
   <div class="wrap">
     <div class="donate">
       <div>
         <h2>NeuroVox — бесплатно, как и все программы NEURO</h2>
         <p>Если программа пригодилась, можно поддержать разработку добровольным донатом. На доступ к программам это не влияет.</p>
       </div>
-      <a class="btn btn-primary" href="https://dalink.to/wz_casper" target="_blank" rel="noopener" style="padding:16px 30px; font-size:15px;">
+      <a class="btn btn-primary btn-donate" href="https://dalink.to/wz_casper" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21 C7 17 3 13.5 3 9.3 C3 6.4 5.3 4 8.2 4 C9.8 4 11.3 4.8 12.2 6.1 C13.1 4.8 14.6 4 16.2 4 C19.1 4 21.4 6.4 21.4 9.3 C21.4 13.5 17 17 12 21 Z"/></svg>
         Поддержать проект
       </a>

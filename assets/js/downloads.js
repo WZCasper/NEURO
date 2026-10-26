@@ -117,9 +117,40 @@
     if (meta) meta.textContent = "Версия " + info.tag + (info.size ? " · " + formatSize(info.size) : "");
   }
 
+  function syncPill(el, state) {
+    // На "fallback" (не удалось спросить GitHub — сеть/лимит запросов) статус-бейдж
+    // не трогаем: оставляем то, что проставлено в HTML вручную, — это не хуже догадки.
+    var card = el.closest(".app-card");
+    var pill = card && card.querySelector(".pill");
+    if (!pill) return;
+    var dot = pill.querySelector(".dot");
+    if (state === "ready") {
+      pill.classList.remove("is-soon");
+      pill.classList.add("is-live");
+      pill.textContent = "";
+      if (dot) pill.appendChild(dot); else {
+        var d = document.createElement("span");
+        d.className = "dot";
+        pill.appendChild(d);
+      }
+      pill.appendChild(document.createTextNode("Доступно"));
+    } else if (state === "none") {
+      pill.classList.remove("is-live");
+      pill.classList.add("is-soon");
+      pill.textContent = "";
+      if (dot) pill.appendChild(dot); else {
+        var d2 = document.createElement("span");
+        d2.className = "dot";
+        pill.appendChild(d2);
+      }
+      pill.appendChild(document.createTextNode("В разработке"));
+    }
+  }
+
   document.querySelectorAll(".js-download[data-repo]").forEach(function (el) {
     var repo = el.getAttribute("data-repo");
     fetchLatest(repo).then(function (info) {
+      syncPill(el, info.state === "none" ? "none" : (info.state === "ready" ? "ready" : "unknown"));
       if (info.state === "none") return setSoon(el);
       if (info.state === "fallback") return setFallback(el, repo);
       setReady(el, info);

@@ -32,13 +32,24 @@
   var devModalOverlay = document.getElementById("dev-modal-overlay");
 
   if (devBtn && devModal) {
+    var lastFocused = null;
+
+    function getFocusable() {
+      return Array.prototype.slice.call(
+        devModal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+    }
     function openModal() {
+      lastFocused = document.activeElement;
       devModal.classList.add("is-open");
       document.body.style.overflow = "hidden";
+      var focusable = getFocusable();
+      if (focusable.length) focusable[0].focus();
     }
     function closeModal() {
       devModal.classList.remove("is-open");
       document.body.style.overflow = "";
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
     }
     devBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -47,7 +58,23 @@
     if (devModalClose) devModalClose.addEventListener("click", closeModal);
     if (devModalOverlay) devModalOverlay.addEventListener("click", closeModal);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeModal();
+      if (!devModal.classList.contains("is-open")) return;
+      if (e.key === "Escape") {
+        closeModal();
+        return;
+      }
+      if (e.key === "Tab") {
+        var focusable = getFocusable();
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 
@@ -92,7 +119,11 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener("resize", resizeCanvas);
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeCanvas, 200);
+    });
     resizeCanvas();
 
     if (canHover) {
@@ -168,7 +199,21 @@
 
     /* Фоновая сетка — часть фирменного стиля сайта, оставляем её живой
        даже при системной настройке "уменьшить анимацию": движение
-       медленное, без резких скачков и параллакса. */
-    (function animate() { drawFrame(); requestAnimationFrame(animate); })();
+       медленное, без резких скачков и параллакса. Останавливаем цикл
+       только когда вкладка реально скрыта (другая вкладка/окно),
+       чтобы не тратить CPU и батарею впустую. */
+    var rafId = null;
+    function animate() {
+      drawFrame();
+      rafId = requestAnimationFrame(animate);
+    }
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      } else if (!rafId) {
+        animate();
+      }
+    });
+    animate();
   }
 })();

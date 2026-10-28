@@ -50,11 +50,11 @@
   --text-muted: #8b8d99;
 
   /* Акцентные цвета в стиле Cyber/Neuro */
-  --accent-violet: #7c5cff;
-  --accent-teal: #33e6d8;
-  --accent-magenta: #ff4fc3;
-  --accent-cyan: #00f0ff;
-  --accent-amber: #ffb800;
+  --accent-violet: var(--c-violet);
+  --accent-teal: var(--c-teal);
+  --accent-magenta: var(--c-magenta);
+  --accent-cyan: var(--c-cyan);
+  --accent-amber: var(--c-amber);
   --accent-blue: #2AABEE; /* Для Telegram бота */
 
   --gradient-brand: linear-gradient(135deg, var(--accent-violet), var(--accent-teal), var(--accent-magenta));

@@ -9,6 +9,7 @@ Thumbs.db
 # Local
 *.log
 node_modules/
+__pycache__/
 
 # Генерируется в CI при каждом деплое (scripts/fetch_releases.py) — в git не храним
 assets/data/releases.json

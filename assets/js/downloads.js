@@ -1,14 +1,34 @@
 /* NEURO — dynamic downloads.
-   Reads the latest GitHub release for each program directly from the
-   GitHub REST API and wires the "Скачать" buttons to the real asset.
-   No hand-maintained links: publish a release on GitHub and the button
-   updates itself for every visitor. */
+   Данные о релизах больше не запрашиваются у api.github.com из браузера
+   каждого посетителя (там жёсткий лимит в 60 запросов/час на IP, который
+   легко исчерпать на общей сети). Вместо этого assets/data/releases.json
+   собирается один раз на этапе деплоя (scripts/fetch_releases.py, GitHub
+   Actions, раз в 6 часов или при пуше) и раздаётся как обычный файл сайта.
+   Публикуете релиз на GitHub — он попадёт на сайт при следующем плановом
+   деплое (максимум несколько часов), без лишних обращений к GitHub при
+   каждом визите. */
 (function () {
   "use strict";
 
-  var TTL_OK = 10 * 60 * 1000;
-  var TTL_MISS = 5 * 60 * 1000;
-  var TIMEOUT = 7000;
+  var DATA_PATH = "../data/releases.json"; // относительно assets/js/, где лежит сам этот файл
+
+  var dataUrl = (function () {
+    try {
+      return new URL(DATA_PATH, document.currentScript.src).href;
+    } catch (e) {
+      return "assets/data/releases.json";
+    }
+  })();
+
+  var dataPromise = null;
+  function loadReleaseData() {
+    if (!dataPromise) {
+      dataPromise = fetch(dataUrl)
+        .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
+        .catch(function () { return null; });
+    }
+    return dataPromise;
+  }
 
   function formatSize(bytes) {
     if (!bytes) return "";
@@ -22,59 +42,18 @@
     return find(/setup.*\.exe$/i) || find(/\.exe$/i) || find(/\.msi$/i) || find(/\.zip$/i) || assets[0];
   }
 
-  function cacheKey(repo) { return "neuro_release_" + repo; }
-
-  function readCache(repo) {
-    try {
-      var raw = sessionStorage.getItem(cacheKey(repo));
-      if (!raw) return null;
-      var data = JSON.parse(raw);
-      return Date.now() > data.expires ? null : data.value;
-    } catch (e) { return null; }
-  }
-
-  function writeCache(repo, value, ttl) {
-    try {
-      sessionStorage.setItem(cacheKey(repo), JSON.stringify({ value: value, expires: Date.now() + ttl }));
-    } catch (e) { /* storage unavailable — degrade silently */ }
-  }
-
-  function fetchLatest(repo) {
-    var cached = readCache(repo);
-    if (cached) return Promise.resolve(cached);
-
-    var controller = ("AbortController" in window) ? new AbortController() : null;
-    var timer = controller ? setTimeout(function () { controller.abort(); }, TIMEOUT) : null;
-
-    return fetch("https://api.github.com/repos/" + repo + "/releases/latest", {
-      headers: { Accept: "application/vnd.github+json" },
-      signal: controller ? controller.signal : undefined
-    }).then(function (res) {
-      if (timer) clearTimeout(timer);
-      if (res.status === 404) {
-        var none = { state: "none" };
-        writeCache(repo, none, TTL_MISS);
-        return none;
-      }
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json().then(function (data) {
-        var asset = pickAsset(data.assets);
-        var ready = {
-          state: "ready",
-          tag: data.tag_name,
-          url: asset ? asset.browser_download_url : data.html_url,
-          isFile: !!asset,
-          size: asset ? asset.size : null
-        };
-        writeCache(repo, ready, TTL_OK);
-        return ready;
-      });
-    }).catch(function () {
-      if (timer) clearTimeout(timer);
-      var fallback = { state: "fallback" };
-      writeCache(repo, fallback, TTL_MISS);
-      return fallback;
-    });
+  function getRepoInfo(data, repo) {
+    if (!data || !data.repos || !(repo in data.repos)) return { state: "fallback" };
+    var entry = data.repos[repo];
+    if (!entry.latest) return { state: "none" };
+    var asset = pickAsset(entry.latest.assets);
+    return {
+      state: "ready",
+      tag: entry.latest.tag_name,
+      url: asset ? asset.browser_download_url : entry.latest.html_url,
+      isFile: !!asset,
+      size: asset ? asset.size : null
+    };
   }
 
   function setSoon(el) {
@@ -118,7 +97,7 @@
   }
 
   function syncPill(el, state) {
-    // На "fallback" (не удалось спросить GitHub — сеть/лимит запросов) статус-бейдж
+    // На "fallback" (releases.json не загрузился — сеть/сбой деплоя) статус-бейдж
     // не трогаем: оставляем то, что проставлено в HTML вручную, — это не хуже догадки.
     var card = el.closest(".app-card");
     var pill = card && card.querySelector(".pill");
@@ -149,17 +128,16 @@
 
   document.querySelectorAll(".js-download[data-repo]").forEach(function (el) {
     var repo = el.getAttribute("data-repo");
-    fetchLatest(repo).then(function (info) {
+    loadReleaseData().then(function (data) {
+      var info = getRepoInfo(data, repo);
       syncPill(el, info.state === "none" ? "none" : (info.state === "ready" ? "ready" : "unknown"));
       if (info.state === "none") return setSoon(el);
       if (info.state === "fallback") return setFallback(el, repo);
       setReady(el, info);
     });
   });
-})();
 
-/* История версий (changelog) — показывает последние релизы репозитория */
-(function () {
+  /* История версий (changelog) — те же данные, без второго похода к GitHub */
   function formatDate(iso) {
     try {
       return new Date(iso).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
@@ -178,40 +156,40 @@
     el.appendChild(li);
   }
 
-  function renderChangelog(el, repo) {
-    fetch("https://api.github.com/repos/" + repo + "/releases?per_page=6", {
-      headers: { Accept: "application/vnd.github+json" }
-    }).then(function (res) {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    }).then(function (list) {
-      if (!list.length) {
-        renderChangelogMessage(el, "Релизов пока нет");
-        return;
-      }
-      clearNode(el);
-      list.forEach(function (r) {
-        var date = formatDate(r.published_at || r.created_at);
-        var li = document.createElement("li");
-        var tagSpan = document.createElement("span");
-        tagSpan.className = "changelog-tag";
-        tagSpan.textContent = r.tag_name;
-        li.appendChild(tagSpan);
-        if (date) {
-          var dateSpan = document.createElement("span");
-          dateSpan.className = "changelog-date";
-          dateSpan.textContent = date;
-          li.appendChild(dateSpan);
-        }
-        el.appendChild(li);
-      });
-    }).catch(function () {
+  function renderChangelogFromData(el, data, repo) {
+    var entry = data && data.repos && data.repos[repo];
+    if (!entry) {
       renderChangelogMessage(el, "Не удалось загрузить историю версий");
+      return;
+    }
+    var list = entry.recent || [];
+    if (!list.length) {
+      renderChangelogMessage(el, "Релизов пока нет");
+      return;
+    }
+    clearNode(el);
+    list.forEach(function (r) {
+      var date = formatDate(r.published_at || r.created_at);
+      var li = document.createElement("li");
+      var tagSpan = document.createElement("span");
+      tagSpan.className = "changelog-tag";
+      tagSpan.textContent = r.tag_name;
+      li.appendChild(tagSpan);
+      if (date) {
+        var dateSpan = document.createElement("span");
+        dateSpan.className = "changelog-date";
+        dateSpan.textContent = date;
+        li.appendChild(dateSpan);
+      }
+      el.appendChild(li);
     });
   }
 
   document.querySelectorAll(".changelog-list[data-repo]").forEach(function (el) {
-    renderChangelog(el, el.getAttribute("data-repo"));
+    var repo = el.getAttribute("data-repo");
+    loadReleaseData().then(function (data) {
+      renderChangelogFromData(el, data, repo);
+    });
   });
 })();
 

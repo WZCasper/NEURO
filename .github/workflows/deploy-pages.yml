@@ -4,6 +4,11 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  schedule:
+    # каждые 6 часов — чтобы данные о релизах в assets/data/releases.json
+    # не устаревали между обновлениями самого сайта (релизы программ
+    # выходят в своих отдельных репозиториях, без пуша сюда)
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: read
@@ -23,6 +28,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Fetch latest release data for all programs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_releases.py
 
       - name: Upload site as Pages artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
